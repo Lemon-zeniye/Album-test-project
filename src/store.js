@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { albumSlice } from "./Features/albumSlice";
-import createSagaMiddleware from "@redux-saga/core";
+import  albumSlice  from "./Features/albumSlice";
+import createSagaMiddleware from "redux-saga";
 import albumSaga from "./Saga/albumSaga";
 
 const saga = createSagaMiddleware();
