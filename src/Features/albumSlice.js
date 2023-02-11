@@ -7,7 +7,7 @@ const albumSlice = createSlice({
         albums: [],
         error: null
     },
-    reducer: {
+    reducers: {
         //getallAlbums
         getAllAlbumsStart: (state) => {
             state.isLoading = true
@@ -25,11 +25,11 @@ const albumSlice = createSlice({
             state.isLoading = true;
         },
         createAlbumSuccess: (state, action) => {
-            state.isLoading = false,
+            state.isLoading = false;
             state.albums = [...state.albums, action.payload]
         },
         createAlbumFail: (state, action) => {
-            state.state = false,
+            state.state = false;
             state.error = action.error
         },
         //updatingAlbum
@@ -52,7 +52,7 @@ const albumSlice = createSlice({
             state.isLoading = false;
             state.albums = state.albums.filter(album => album.id !== action.payload)
         },
-        deleteAlbumFail: (state) => {
+        deleteAlbumFail: (state, action) => {
             state.isLoading = false;
             state.error = action.payload;
         }
