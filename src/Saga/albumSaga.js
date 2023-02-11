@@ -6,7 +6,7 @@ import { getAlbums, createAlbum, updateAlbum, deleteAlbum } from "../api/api";
 function* getAlbumSaga(){
     try{
         const data = yield getAlbums();
-        yield put(getAllAlbumsSuccess(data));
+        yield put(getAllAlbumsSuccess(data.data));
     }catch(error){
         yield getAllAlbumsFail(error.message)
     }
