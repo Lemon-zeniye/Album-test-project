@@ -12,28 +12,29 @@ function* getAlbumSaga(){
     }
 }
 
-function* createAlbumSaga(){
+function* createAlbumSaga({payload}){
     try{
-        const data = yield createAlbum();
-        yield put(createAlbumSuccess(data))  
+        const data = yield createAlbum(payload);
+        yield put(createAlbumSuccess(data.data))  
     }catch(error){
         yield put(createAlbumFail(error))
     }
 }
 
-function* updateAlbumSaga(){
+function* updateAlbumSaga({ payload }){
     try{
-        const data = yield updateAlbum();
-        yield put(updateAlbumSuccess(data))
+        const data = yield updateAlbum(payload);
+        console.log(data)
+        yield put(updateAlbumSuccess(data.data))
     }catch(error){
         yield put(updateAlbumFail(error))
     }
 }
 
-function* deleteAlbumSaga(){
+function* deleteAlbumSaga({payload}){
     try{
-        const data = yield deleteAlbum();
-        yield put(deleteAlbumSuccess(data))
+        yield deleteAlbum(payload);
+        yield put(deleteAlbumSuccess(payload))
     }catch(error){
         yield put(deleteAlbumFail(error))
     }
