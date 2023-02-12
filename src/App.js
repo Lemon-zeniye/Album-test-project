@@ -14,7 +14,7 @@ function App() {
   
   useEffect(() => {
     dispatch(getAllAlbumsStart());
-  },[]);
+  },[dispatch]);
 
   const submitHandeler = (e) => {
     e.preventDefault();
