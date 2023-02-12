@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { setNightMode } from "./Features/nightModeSlice";
 import { getAllAlbumsStart, createAlbumStart, updateAlbumStart, deleteAlbumStart } from "./Features/albumSlice";
 import { Container, Card, Button,Form,BallCon, Ball, SmallCon,Nav  } from "./AppStyle";
+import { css } from '@emotion/css';
 
 function App() {
   const albums = useSelector(state => state.albums.albums);
@@ -33,12 +34,22 @@ function App() {
     const album = albums.find(album => album.id === data.id);
     setAlbum(album);
   }
-  
+  const color = night ? "white" : "lightslategray";
+  const hoverColor = night ? "black" : "white";
   return (
     <Container night={night}>
       <SmallCon>
         <Nav night={night} >
-          <h1>Album List</h1>
+          <h1
+            className={css`
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            text-decoration: underline;
+            color: ${color};
+            &:hover {
+              color: ${hoverColor};
+            }
+          `}>Album List</h1>
           <BallCon onClick={() => dispatch(setNightMode(!night))}>
             <Ball night={night}></Ball>
           </BallCon>

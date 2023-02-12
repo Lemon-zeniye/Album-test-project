@@ -15,12 +15,7 @@ export const Nav = styled.nav`
     padding: 0 1rem;
     background-color: ${({night}) => night ? "#111827" : "white"};
     background: ${({night}) => night ? "radial-gradient(circle, rgba(185,198,227,1) 50%, rgba(45,66,111,1) 100%)"  : "radial-gradient(circle, rgba(244,244,244,1) 50%, rgba(207,207,207,1) 100%)" };
-    h1{
-        font-family: 'Poppins', sans-serif;
-        font-size: 2rem;
-        text-decoration: underline;
-        color: ${({night}) => night ? "white" : "lightslategray"}
-    }
+    
 `
 
 export const SmallCon = styled.div`
