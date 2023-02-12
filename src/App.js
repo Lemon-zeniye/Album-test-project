@@ -1,9 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { setNightMode } from "./Features/nightModeSlice";
 import { getAllAlbumsStart, createAlbumStart, updateAlbumStart, deleteAlbumStart } from "./Features/albumSlice";
+import { Container, Card, Button,Form,BallCon, Ball, SmallCon,Nav  } from "./AppStyle";
 
 function App() {
   const albums = useSelector(state => state.albums.albums);
+  const night = useSelector(state => state.nightMode.night);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [album, setAlbum] = useState({});
@@ -32,21 +35,31 @@ function App() {
   }
   
   return (
-    <div>
-      <form onSubmit={submitHandeler}>
-        <input name="title" type="text" value={title} placeholder="Enter title" onChange={(e) => setTitle(e.target.value)  } />
-        <button>submit</button>
-      </form>
-      {
-        albums.map(album => (
-          <div key={album.id} >
-              <li>{album.id} {album.title}</li>
-              <button onClick={() => eidtHandler(album)} >Edit</button>
-              <button onClick={() => dispatch(deleteAlbumStart(album.id))}>Delete</button>
-          </div>
-        ))
-      }
-    </div>
+    <Container night={night}>
+      <SmallCon>
+        <Nav night={night} >
+          <h1>Album List</h1>
+          <BallCon onClick={() => dispatch(setNightMode(!night))}>
+            <Ball night={night}></Ball>
+          </BallCon>
+        </Nav>
+          <Form night={night}  onSubmit={submitHandeler}>
+            <input name="title" type="text" value={title} placeholder="Enter title" onChange={(e) => setTitle(e.target.value)  } />
+            <Button submit>submit</Button>
+          </Form>
+        {
+          albums.map((album, index) => (
+            <Card night={night} key={index} >
+                <li>{index + 1} - {album.title}</li>
+                <div>
+                  <Button onClick={() => eidtHandler(album)} edit >Edit</Button>
+                  <Button onClick={() => dispatch(deleteAlbumStart(album.id))} delete>Delete</Button>
+                </div>
+            </Card>
+          ))
+        }
+      </SmallCon>
+    </Container>
   );
 }
 

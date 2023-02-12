@@ -26,7 +26,7 @@ const albumSlice = createSlice({
         },
         createAlbumSuccess: (state, action) => {
             state.isLoading = false;
-            state.albums = [...state.albums, action.payload]
+            state.albums = [action.payload, ...state.albums ]
         },
         createAlbumFail: (state, action) => {
             state.state = false;
