@@ -5,6 +5,7 @@ const albumSlice = createSlice({
     initialState: {
         isLoading: false,
         albums: [],
+        album: {},
         error: null
     },
     reducers: {
@@ -19,6 +20,18 @@ const albumSlice = createSlice({
         getAllAlbumsFail: (state, action) => {
             state.isLoading = false;
             state.error = action.payload
+        },
+        //getSingleAlbum
+        getSingleAlbumStart: (state) => {
+            state.isLoading = true
+        },
+        getSingleAlbumSuccess: (state, action) => {
+            state.isLoading = false;
+            state.album = action.payload
+        },
+        getSingleAlbumFail: (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
         },
         //createAlbum
         createAlbumStart: (state) => {
@@ -59,5 +72,5 @@ const albumSlice = createSlice({
     }
 });
 
-export const { getAllAlbumsStart, getAllAlbumsSuccess, getAllAlbumsFail, createAlbumStart, createAlbumSuccess, createAlbumFail, updateAlbumStart, updateAlbumSuccess, updateAlbumFail, deleteAlbumStart, deleteAlbumSuccess, deleteAlbumFail } = albumSlice.actions;
+export const { getAllAlbumsStart, getAllAlbumsSuccess, getAllAlbumsFail, createAlbumStart, createAlbumSuccess, createAlbumFail, updateAlbumStart, updateAlbumSuccess, updateAlbumFail, deleteAlbumStart, deleteAlbumSuccess, deleteAlbumFail, getSingleAlbumStart, getSingleAlbumSuccess, getSingleAlbumFail } = albumSlice.actions;
 export default albumSlice.reducer;
